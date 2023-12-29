@@ -23,13 +23,13 @@ SUPPORTED_PURPOSES = {
     "university.deregistration": "Exmatrikulationsbescheinigung"
 }
 
-# Auslieferung der One Page App
+# delivery url of the one page app
 @app.route('/', methods=["GET"])
 def get_index():
     return send_file("templates/index.html")
 
 
-# Webapi für One Page App
+# Webapi for one page app
 @app.route("/api/countries", methods=["GET"])
 def get_countries():
     return SUPPORTED_COUNTRIES
@@ -69,7 +69,7 @@ def get_document():
     return document
 
 
-# Hilfsfunktionen
+# helper functions for the above web api
 def __find_relevant_servers(country, purpose):
     if not country in SUPPORTED_COUNTRIES.keys():
         abort(400, "Invalid request, unsupported country")
@@ -87,6 +87,7 @@ async def __find_documents_async(session, country, purpose, eid, entry_point_url
         return await response.json()
 
 
+# helper for async mass lockup for documents in multiple repositories
 async def __find_documents_async_all(country, purpose, eid, servers):
     async with aiohttp.ClientSession() as session:
         tasks = []
