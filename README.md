@@ -57,9 +57,11 @@ If that is done, proceed like the following listing shows:
 
 ```shell
 mkdir demo
-git clone https://github.com/....
 cd demo
+git clone https://github.com/ww-lessons/simplified_oots_for_training.git
 docker compose up
+# then wait until the app is up
+# then you can go to http://localhost:8080 with your favourite browser
 ```
 
 ## How to find eIDs with more than one deregistrations
