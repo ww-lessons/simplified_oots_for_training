@@ -64,6 +64,15 @@ docker compose up
 # then you can go to http://localhost:8080 with your favourite browser
 ```
 
+If you want to have some example data in your system feel free to run one of
+
+* test.py
+* generate_demodata.py
+* generate_massdata.py
+
+directly from your shell on your local system. The scripts will connect to the
+backends using localhost:8081 and localhost:8082.
+
 ## How to find eIDs with more than one deregistrations
 
 Connect a shell to the mongodb database for the backends, login and select the right database:
