@@ -1,0 +1,5 @@
+flask
+pymongo[srv]
+cerberus
+pyyaml
+requests

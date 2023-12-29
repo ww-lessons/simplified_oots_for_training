@@ -1,0 +1,57 @@
+country:
+  type: string
+  allowed:
+  - de
+  - at
+  - ch
+  - cz
+  - sk
+  - nl
+  - fr
+  - es
+  - it
+  - se
+purpose:
+  type: string
+  allowed:
+  - university.deregistration
+eid:
+  type: string
+  # Intended problem: with this rule, german universities can just have german students!
+  regex: "^[0-9]{11}@id.bund.de" # Just a sample, has nothing to do with real eID
+signing_authority_defaulttext:
+  type: string
+universitynumber:
+  type: string
+  regex: "^[0-9]{4}$"
+registrationnumber:
+  type: string
+  regex: "^[0-9]{2,20}$"
+firstname: 
+  type: string
+surname:
+  type: string
+registration:
+  type: dict
+  schema:
+    first_period_year: 
+      type: integer
+    first_period_type: 
+      type: string
+      allowed:
+      - "Sommersemester"
+      - "Wintersemester"
+    first_period_subject:
+      type: string
+deregistration:
+  type: dict
+  schema:
+    date_of_deregistration:
+      type: string
+      regex: "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}$"
+    cause_of_deregistration:
+      type: string
+      allowed:
+        - success
+        - own_decision
+        - finally_failed_examination

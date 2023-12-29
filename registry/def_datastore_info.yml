@@ -1,0 +1,26 @@
+country:
+  type: string
+  allowed:
+  - de
+  - at
+  - ch
+  - cz
+  - sk
+  - nl
+  - fr
+  - es
+  - it
+  - se
+purpose:
+  type: string
+  allowed:
+  - university.registration    # Immatrikulationsbescheinigung
+  - university.graduation      # Studienabschluss incl. Note
+  - university.deregistration  # Exmatrikulation
+  - health.insurance           # Krankenversicherung ...
+entry_point_url: 
+  type: string
+version:
+  type: integer
+  min: 0
+  max: 1000

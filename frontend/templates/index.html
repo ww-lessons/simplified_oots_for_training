@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./static/knockout-3.5.1.js"></script>
+    <link href="./static/bootstrap.min.css" rel="stylesheet">
+    <title>Demo Frontend - Bürgerportal</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Demo: Bürgerportal</span>
+        </div>
+      </nav>
+    <div class="container">        
+        <div class="row" style="margin-top: 20px;">
+            <label for="country_select">Land</label>
+            <select class="form-select" id="country_select" data-bind="options: countries, value: selectedCountry, optionsText: 'value', optionsValue: 'key'">
+            </select>
+        </div>
+        <div class="row">
+            <label for="purpose_select">Bescheidtyp/Bescheidzweck</label>
+            <select class="form-select" id="purpose_select" data-bind="options: purposes, value: selectedPurpose, optionsText: 'value', optionsValue: 'key'">
+            </select>
+        </div>
+        <div class="row">
+            <label for="eid_tf">eID</label>
+            <input class="form-control" type="text" data-bind="value: eid" style="width:90%">            
+            <button class="btn-sm btn-secondary" data-bind="click: setSampleeIDDE" style="width:5%;">DE</button>
+            <button class="btn-sm btn-secondary" data-bind="click: setSampleeIDCZ" style="width:5%;">CZ</button>
+        </div>
+        <div class="row">
+            <input class="btn btn-primary" type="button" data-bind="click: searchDocuments" value="Suchen">
+        </div>
+    </div>
+    <div class="container" style="margin-top: 20px;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Land</th>
+                    <th>Dokumenttyp</th>
+                    <th>Aussteller</th>
+                    <th>Referenz</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: results">
+                <tr>
+                    <td data-bind="text: country"></td>
+                    <td data-bind="text: purpose"></td>
+                    <td data-bind="text: signing_authority_defaulttext"></td>
+                    <td><a class="btn btn-secondary" data-bind="attr: { href: clickableUrl }">Anzeigen</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="/static/model.js"></script>
+</body>
+</html>

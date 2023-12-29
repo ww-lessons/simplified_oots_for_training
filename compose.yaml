@@ -1,0 +1,74 @@
+services:
+  frontend:
+    build: ./frontend
+    ports: 
+      - "8080:5000"
+    volumes:
+      - ./frontend:/code
+    environment:
+      FLASK_DEBUG: "true"
+    depends_on:
+      - registry
+      - backend_de
+      - backend_cz
+  backend_de:
+    build: ./backend
+    ports: 
+      - "8081:5000"
+    volumes:
+      - ./backend:/code
+    environment:
+      FLASK_DEBUG: "true"
+      COUNTRY: "de"
+      D_HOSTNAME: "backend_de"
+      D_PREFIX: "by"
+    depends_on:
+      - registry
+      - backend_db
+  backend_de2:
+    build: ./backend    
+    volumes:
+      - ./backend:/code
+    environment:
+      FLASK_DEBUG: "true"
+      COUNTRY: "de"
+      D_HOSTNAME: "backend_de2"
+      D_PREFIX: "bw"
+    depends_on:
+      - registry
+      - backend_db
+  backend_cz:
+    build: ./backend
+    ports: 
+      - "8083:5000"
+    volumes:
+      - ./backend:/code
+    environment:
+      FLASK_DEBUG: "true"
+      COUNTRY: "cz"
+      D_HOSTNAME: "backend_cz"
+      D_PREFIX: "cz"
+    depends_on:
+      - registry
+      - backend_db
+  registry:
+    build: ./registry
+    ports: 
+      - "8082:5000"
+    volumes:
+      - ./registry/:/code
+    environment:
+      FLASK_DEBUG: "true"
+    depends_on:
+      - registry_db
+  registry_db:
+    image: "mongo"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: test1234
+  backend_db:
+    image: "mongo"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: test1234
