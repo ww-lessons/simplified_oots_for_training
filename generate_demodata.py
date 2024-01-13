@@ -97,3 +97,14 @@ if __name__ == "__main__":
     resp = insert_content(data)
     if resp.status_code > 299:
         print(resp.content)
+
+    # Generate Jan Novák
+    data = generate_graduation(
+        country="cz", 
+        eid="12345840761@identitaobcana.cz",
+        authority="Západočeská univerzita v Plzni",
+        universitynumber="02"
+    )
+    resp = insert_content(data)
+    if resp.status_code > 299:
+        print(resp.content)
